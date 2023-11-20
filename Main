@@ -1,0 +1,29 @@
+class AppointmentScheduler:
+    def __init__(self):
+        self.available_slots = {"Monday": ["10:00 AM", "2:00 PM", "4:00 PM"],
+                                "Tuesday": ["1:00 PM", "3:00 PM", "5:00 PM"],
+                                "Wednesday": ["11:00 AM", "1:00 PM", "3:00 PM"]}
+
+    def display_available_slots(self):
+        print("Available Slots:")
+        for day, slots in self.available_slots.items():
+            print(f"{day}: {', '.join(slots)}")
+
+    def book_appointment(self, day, time):
+        if day in self.available_slots and time in self.available_slots[day]:
+            self.available_slots[day].remove(time)
+            print(f"Appointment booked for {day} at {time}")
+        else:
+            print("Invalid day or time. Please choose an available slot.")
+
+# Example usage:
+scheduler = AppointmentScheduler()
+
+# Display available slots
+scheduler.display_available_slots()
+
+# Book an appointment
+scheduler.book_appointment("Monday", "2:00 PM")
+
+# Display updated available slots
+scheduler.display_available_slots()
